@@ -1,7 +1,6 @@
 DROP TABLE IF EXISTS `UserInformation`;
 CREATE TABLE `UserInformation` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
-	`userID` varchar(26) NOT NULL UNIQUE,
 	`password` BINARY(100) NOT NULL,
 	`firstName` varchar(100),
 	`middleName` varchar(100),
@@ -115,7 +114,7 @@ CREATE TABLE `ThirdPartyAPISetupActivityLog` (
 
 ALTER TABLE `UserInformation` ADD CONSTRAINT `UserInformation_fk0` FOREIGN KEY (`UserPolicyID`) REFERENCES `UserPolicy`(`u_ID`);
 
-ALTER TABLE `Transaction` ADD CONSTRAINT `Transaction_fk0` FOREIGN KEY (`userID`) REFERENCES `UserInformation`(`userID`);
+ALTER TABLE `Transaction` ADD CONSTRAINT `Transaction_fk0` FOREIGN KEY (`userID`) REFERENCES `UserInformation`(`u_ID`);
 
 ALTER TABLE `ActivityLog` ADD CONSTRAINT `ActivityLog_fk0` FOREIGN KEY (`service`) REFERENCES `APISetup`(`serviceName`);
 
