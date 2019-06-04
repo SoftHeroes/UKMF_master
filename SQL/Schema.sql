@@ -1,20 +1,22 @@
 DROP TABLE IF EXISTS `UserInformation`;
 CREATE TABLE `UserInformation` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
-	`password` BINARY(100) NOT NULL,
+	`password` varchar(100) NOT NULL,
 	`firstName` varchar(100),
 	`middleName` varchar(100),
 	`lastName` varchar(100),
 	`emailID` varchar(250) NOT NULL UNIQUE,
 	`phoneNumber` varchar(10) NOT NULL UNIQUE,
 	`creationDatetime` DATETIME NOT NULL,
-	`lastUpdateDatetime` DATETIME NOT NULL,
+	`lastUpdateDatetime` DATETIME,
 	`InvaildUpdateAttemptsCount` INT NOT NULL DEFAULT '0',
 	`UserPolicyID` DECIMAL(10) NOT NULL,
-	`QRCode` BINARY NOT NULL,
-	`UPIQRCode` BINARY NOT NULL,
-	`walletAmount` INT(10) NOT NULL,
-	`UPIID` varchar(100) NOT NULL,
+	`QRCode` BINARY,
+	`UPIQRCode` BINARY,
+	`walletAmount` INT(10) DEFAULT '0',
+	`UPIID` varchar(100),
+	`Active` INT(1) NOT NULL DEFAULT '1',
+	`Deleted` INT(1) NOT NULL DEFAULT '0',
 	PRIMARY KEY (`u_ID`)
 );
 
