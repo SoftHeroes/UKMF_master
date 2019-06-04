@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS `UserInformation`;
+
 CREATE TABLE `UserInformation` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
 	`password` varchar(100) NOT NULL,
@@ -10,7 +11,7 @@ CREATE TABLE `UserInformation` (
 	`creationDatetime` DATETIME NOT NULL,
 	`lastUpdateDatetime` DATETIME,
 	`InvaildUpdateAttemptsCount` INT NOT NULL DEFAULT '0',
-	`UserPolicyID` DECIMAL(10) NOT NULL,
+	`UserPolicyID` INT(10) NOT NULL,
 	`QRCode` INT(10),
 	`UPIQRCode` BINARY,
 	`walletAmount` INT(10) DEFAULT '0',
@@ -21,6 +22,7 @@ CREATE TABLE `UserInformation` (
 );
 
 DROP TABLE IF EXISTS `Transaction`;
+
 CREATE TABLE `Transaction` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT UNIQUE,
 	`TransactionUUID` varchar(64) NOT NULL UNIQUE,
@@ -50,6 +52,7 @@ CREATE TABLE `Transaction` (
 );
 
 DROP TABLE IF EXISTS `UserPolicy`;
+
 CREATE TABLE `UserPolicy` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
 	`InvaildUpdateAttemptsAllowed` INT NOT NULL DEFAULT '3',
@@ -60,17 +63,19 @@ CREATE TABLE `UserPolicy` (
 );
 
 DROP TABLE IF EXISTS `ActivityLog`;
+
 CREATE TABLE `ActivityLog` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
 	`service` varchar(100) NOT NULL,
-	`ResponseCode` varchar(200) NOT NULL,
-	`Response` varchar(1000) NOT NULL,
+	`ResponseCode` varchar(100) NOT NULL,
+	`Response` varchar(200) NOT NULL,
 	`version` varchar(100) NOT NULL,
 	`source` varchar(200) NOT NULL,
 	PRIMARY KEY (`u_ID`)
 );
 
 DROP TABLE IF EXISTS `ThirdPartyAPISetup`;
+
 CREATE TABLE `ThirdPartyAPISetup` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
 	`server` varchar(200) NOT NULL,
@@ -84,6 +89,7 @@ CREATE TABLE `ThirdPartyAPISetup` (
 );
 
 DROP TABLE IF EXISTS `APISetup`;
+
 CREATE TABLE `APISetup` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
 	`serviceName` varchar(100) NOT NULL UNIQUE,
@@ -94,16 +100,18 @@ CREATE TABLE `APISetup` (
 );
 
 DROP TABLE IF EXISTS `MessageMaster`;
+
 CREATE TABLE `MessageMaster` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
-	`Code` varchar(200) NOT NULL UNIQUE,
-	`Message` varchar(1000) NOT NULL,
+	`Code` varchar(100) NOT NULL UNIQUE,
+	`Message` varchar(200) NOT NULL,
 	`version` varchar(100) NOT NULL,
 	`language` varchar(100) NOT NULL,
 	PRIMARY KEY (`u_ID`)
 );
 
 DROP TABLE IF EXISTS `ThirdPartyAPISetupActivityLog`;
+
 CREATE TABLE `ThirdPartyAPISetupActivityLog` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
 	`serviceID` INT(10) NOT NULL,
