@@ -11,7 +11,7 @@ CREATE TABLE `UserInformation` (
 	`lastUpdateDatetime` DATETIME,
 	`InvaildUpdateAttemptsCount` INT NOT NULL DEFAULT '0',
 	`UserPolicyID` DECIMAL(10) NOT NULL,
-	`QRCode` BINARY,
+	`QRCode` INT(10),
 	`UPIQRCode` BINARY,
 	`walletAmount` INT(10) DEFAULT '0',
 	`UPIID` varchar(100),
@@ -25,7 +25,7 @@ CREATE TABLE `Transaction` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT UNIQUE,
 	`TransactionUUID` varchar(64) NOT NULL UNIQUE,
 	`datetime` varchar(64) NOT NULL UNIQUE,
-	`userID` varchar(64) NOT NULL UNIQUE,
+	`userID` INT(10) NOT NULL UNIQUE,
 	`transactionType` INT NOT NULL,
 	`Amount` DECIMAL(10) NOT NULL,
 	`transactionCode` INT NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE `ActivityLog` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
 	`service` varchar(100) NOT NULL,
 	`ResponseCode` varchar(200) NOT NULL,
-	`Response` varchar(200) NOT NULL,
+	`Response` varchar(1000) NOT NULL,
 	`version` varchar(100) NOT NULL,
 	`source` varchar(200) NOT NULL,
 	PRIMARY KEY (`u_ID`)
@@ -96,7 +96,7 @@ CREATE TABLE `APISetup` (
 DROP TABLE IF EXISTS `MessageMaster`;
 CREATE TABLE `MessageMaster` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
-	`Code` varchar(100) NOT NULL UNIQUE,
+	`Code` varchar(200) NOT NULL UNIQUE,
 	`Message` varchar(1000) NOT NULL,
 	`version` varchar(100) NOT NULL,
 	`language` varchar(100) NOT NULL,
@@ -106,7 +106,7 @@ CREATE TABLE `MessageMaster` (
 DROP TABLE IF EXISTS `ThirdPartyAPISetupActivityLog`;
 CREATE TABLE `ThirdPartyAPISetupActivityLog` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
-	`serviceID` varchar(100) NOT NULL,
+	`serviceID` INT(10) NOT NULL,
 	`ResponseCode` varchar(200) NOT NULL,
 	`Response` varchar(200) NOT NULL,
 	`version` varchar(100) NOT NULL,
