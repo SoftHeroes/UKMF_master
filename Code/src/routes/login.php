@@ -20,6 +20,7 @@ $app->post('/api/Login', function (Request $request, Response $response) {
         $db = $db->connect(); // Making Connection
 
         $stmt = $db->query($sql);
+
         $resultSet = $stmt->fetchAll();
         if(count($resultSet) > 0 )
         {
@@ -51,6 +52,8 @@ $app->post('/api/Login', function (Request $request, Response $response) {
                                 );
         
         return $response->withJson($ResponseArray,501);
+
+
     }
 });
 
