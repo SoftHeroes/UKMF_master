@@ -61,3 +61,15 @@ SELECT * FROM (SELECT 'ERR00009','YES','Invalid language.','1.0.0','English') AS
 WHERE NOT EXISTS (
     SELECT `Code` FROM `messagemaster` WHERE `Code` = 'ERR00009' AND  `Message` = 'Invalid language.'
 ) LIMIT 1;
+
+INSERT INTO `messagemaster` (`Code`,`ErrorFound`, `Message`, `version`, `language`)
+SELECT * FROM (SELECT 'ERR00010','YES','Username cannot be empty.','1.0.0','English') AS tmp
+WHERE NOT EXISTS (
+    SELECT `Code` FROM `messagemaster` WHERE `Code` = 'ERR00010' AND  `Message` = 'Username cannot be empty.'
+) LIMIT 1;
+
+INSERT INTO `messagemaster` (`Code`,`ErrorFound`, `Message`, `version`, `language`)
+SELECT * FROM (SELECT 'ERR00011','YES','Password cannot be empty.','1.0.0','English') AS tmp
+WHERE NOT EXISTS (
+    SELECT `Code` FROM `messagemaster` WHERE `Code` = 'ERR00011' AND  `Message` = 'Password cannot be empty.'
+) LIMIT 1;

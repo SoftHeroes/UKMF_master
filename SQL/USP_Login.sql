@@ -6,22 +6,22 @@ proc_Call:BEGIN
 	DECLARE RowCount INT DEFAULT 0;
     
     IF(  p_Username IS NULL OR TRIM(p_Username) = '' ) THEN
-<<<<<<< HEAD
+
       BEGIN
-		    SELECT * FROM `messagemaster` WHERE `Code` = 'ERR00001' AND `language` = p_Language;
+		    SELECT * FROM `messagemaster` WHERE `Code` = 'ERR00010' AND `language` = p_Language;
 		    LEAVE proc_Call;
       END;
     ELSEIF ( p_Password IS NULL OR TRIM(p_Password) = '' ) THEN
       BEGIN
-		      SELECT * FROM `messagemaster` WHERE `Code` = 'ERR00002' AND `language` = p_Language;
+		      SELECT * FROM `messagemaster` WHERE `Code` = 'ERR00011' AND `language` = p_Language;
 		      LEAVE proc_Call;
       END;
-	   ELSEIF ( p_Language IS NULL OR TRIM(p_Language) = '' ) THEN
+	  ELSEIF ( p_Language IS NULL OR TRIM(p_Language) = '' ) THEN
       BEGIN
         SELECT `Code`,`ErrorFound`,`Message`,`version`,`language` FROM `messagemaster` WHERE `Code` = 'ERR00009' AND `language` = p_Language;
         LEAVE proc_Call;
       END;
-      ELSEIF NOT EXISTS (select * from languagelookup where language = p_Language) THEN
+      ELSEIF NOT EXISTS (select 1 from languagelookup where language = p_Language) THEN
         BEGIN
           SELECT `Code`,`ErrorFound`,`Message`,`version`,`language` FROM `messagemaster` WHERE `Code` = 'ERR00009' AND `language` = 'English';
           LEAVE proc_Call;
@@ -30,34 +30,14 @@ proc_Call:BEGIN
 	
     
 	SET RowCount = ( SELECT 1 FROM `UserInformation` WHERE (emailID = p_Username OR phoneNumber = p_Username) AND password = PASSWORD(p_Password) );
-=======
-    BEGIN
-		SELECT * FROM `messagemaster` WHERE `Code` = 'ERR00001' AND `language` = p_Language;
-		LEAVE proc_Call;
-    END;
-    ELSEIF ( p_Password IS NULL OR TRIM(p_Password) = '' ) THEN
-        BEGIN
-		SELECT * FROM `messagemaster` WHERE `Code` = 'ERR00002' AND `language` = p_Language;
-		LEAVE proc_Call;
-    END;
-	ELSEIF ( p_Language IS NULL OR TRIM(p_Language) = '' ) THEN
-	BEGIN
-		SELECT `Code`,`ErrorFound`,`Message`,`version`,`language` FROM `messagemaster` WHERE `Code` = 'ERR00009' AND `language` = p_Language;
-		LEAVE proc_Call;
-    END;
-    END IF;
-	
     
-	SET RowCount = ( SELECT COUNT(*) FROM `UserInformation` WHERE (emailID = p_Username OR phoneNumber = p_Username) AND password = PASSWORD(p_Password) );
->>>>>>> 1681257cc2066d558b1e1140fd459b9500c3260f
-    
-    IF(RowCount > 0 ) THEN 
-		SELECT `Code`,`ErrorFound`,`Message`,`version`,`language` FROM `messagemaster` WHERE `Code` = 'ERR00006' AND `language` = p_Language;
-    ELSE
-		SELECT `Code`,`ErrorFound`,`Message`,`version`,`language` FROM `messagemaster` WHERE `Code` = 'ERR00008' AND `language` = p_Language;
-    END IF;
+  IF(RowCount > 0 ) THEN 
+  SELECT `Code`,`ErrorFound`,`Message`,`version`,`language` FROM `messagemaster` WHERE `Code` = 'ERR00006' AND `language` = p_Language;
+  ELSE
+  SELECT `Code`,`ErrorFound`,`Message`,`version`,`language` FROM `messagemaster` WHERE `Code` = 'ERR00008' AND `language` = p_Language;
+  END IF;
 END$$
 
 DELIMITER ;
 
--- call USP_login('9074200979','Test123!','English')
+-- call USP_login('9074200979','Test123!','nglish')
