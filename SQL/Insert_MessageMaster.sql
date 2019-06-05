@@ -73,3 +73,9 @@ SELECT * FROM (SELECT 'ERR00011','YES','Password cannot be empty.','1.0.0','Engl
 WHERE NOT EXISTS (
     SELECT `Code` FROM `messagemaster` WHERE `Code` = 'ERR00011' AND  `Message` = 'Password cannot be empty.'
 ) LIMIT 1;
+
+INSERT INTO `messagemaster` (`Code`,`ErrorFound`, `Message`, `version`, `language`)
+SELECT * FROM (SELECT 'ERR00012','YES','Language cannot be empty.','1.0.0','English') AS tmp
+WHERE NOT EXISTS (
+    SELECT `Code` FROM `messagemaster` WHERE `Code` = 'ERR00012' AND  `Message` = 'Language cannot be empty.'
+) LIMIT 1;
