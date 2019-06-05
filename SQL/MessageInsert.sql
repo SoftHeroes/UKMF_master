@@ -1,10 +1,13 @@
 INSERT INTO `messagemaster` (`Code`,`ErrorFound`, `Message`, `version`, `language`)
+<<<<<<< HEAD
 SELECT * FROM (SELECT 'ERR00000','YES','Invalid Exception.','1.0.0','English') AS tmp
 WHERE NOT EXISTS (
     SELECT `Code` FROM `messagemaster` WHERE `Code` = 'ERR00000' AND  `Message` = 'Invalid Exception.'
 ) LIMIT 1;
 
 INSERT INTO `messagemaster` (`Code`,`ErrorFound`, `Message`, `version`, `language`)
+=======
+>>>>>>> 1681257cc2066d558b1e1140fd459b9500c3260f
 SELECT * FROM (SELECT 'ERR00001','YES','Invalid EMail ID.','1.0.0','English') AS tmp
 WHERE NOT EXISTS (
     SELECT `Code` FROM `messagemaster` WHERE `Code` = 'ERR00001' AND `Message` = 'Invalid EMail ID.'
@@ -60,4 +63,8 @@ INSERT INTO `messagemaster` (`Code`,`ErrorFound`, `Message`, `version`, `languag
 SELECT * FROM (SELECT 'ERR00009','YES','Invalid language.','1.0.0','English') AS tmp
 WHERE NOT EXISTS (
     SELECT `Code` FROM `messagemaster` WHERE `Code` = 'ERR00009' AND  `Message` = 'Invalid language.'
+<<<<<<< HEAD
 ) LIMIT 1;
+=======
+) LIMIT 1;
+>>>>>>> 1681257cc2066d558b1e1140fd459b9500c3260f

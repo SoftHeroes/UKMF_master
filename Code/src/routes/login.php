@@ -20,6 +20,7 @@ $app->post('/api/Login', function (Request $request, Response $response) {
         $db = $db->connect(); // Making Connection
 
         $stmt = $db->query($sql);
+<<<<<<< HEAD
         $resultSet = $stmt->fetchAll();
         if(count($resultSet) > 0 )
         {
@@ -51,6 +52,14 @@ $app->post('/api/Login', function (Request $request, Response $response) {
                                 );
         
         return $response->withJson($ResponseArray,501);
+=======
+        $resultSet = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        echo json_encode($resultSet);
+
+    } catch (PDOException $e) {
+        echo '{"error":{"text":"'.$e->getMessage().'"}}';
+>>>>>>> 1681257cc2066d558b1e1140fd459b9500c3260f
     }
 });
 
