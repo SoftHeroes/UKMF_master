@@ -103,7 +103,8 @@ DROP TABLE IF EXISTS `MessageMaster`;
 
 CREATE TABLE `MessageMaster` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
-	`Code` varchar(100) NOT NULL UNIQUE,
+	`Code` varchar(100) NOT NULL,
+	`ErrorFound` varchar(5) NOT NULL,
 	`Message` varchar(200) NOT NULL,
 	`version` varchar(100) NOT NULL,
 	`language` varchar(100) NOT NULL,
