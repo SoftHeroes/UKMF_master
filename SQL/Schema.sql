@@ -103,7 +103,8 @@ DROP TABLE IF EXISTS `MessageMaster`;
 
 CREATE TABLE `MessageMaster` (
 	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
-	`Code` varchar(100) NOT NULL UNIQUE,
+	`Code` varchar(100) NOT NULL,
+	`ErrorFound` varchar(5) NOT NULL,
 	`Message` varchar(200) NOT NULL,
 	`version` varchar(100) NOT NULL,
 	`language` varchar(100) NOT NULL,
@@ -122,6 +123,14 @@ CREATE TABLE `ThirdPartyAPISetupActivityLog` (
 	PRIMARY KEY (`u_ID`)
 );
 
+DROP TABLE IF EXISTS `languageLookup`;
+
+CREATE TABLE `languageLookup` (
+	`u_ID` INT(10) NOT NULL AUTO_INCREMENT,
+	`language` varchar(255) NOT NULL UNIQUE,
+	PRIMARY KEY (`u_ID`)
+);
+
 ALTER TABLE `UserInformation` ADD CONSTRAINT `UserInformation_fk0` FOREIGN KEY (`UserPolicyID`) REFERENCES `UserPolicy`(`u_ID`);
 
 ALTER TABLE `Transaction` ADD CONSTRAINT `Transaction_fk0` FOREIGN KEY (`userID`) REFERENCES `UserInformation`(`u_ID`);
@@ -133,5 +142,7 @@ ALTER TABLE `ActivityLog` ADD CONSTRAINT `ActivityLog_fk1` FOREIGN KEY (`Respons
 ALTER TABLE `ActivityLog` ADD CONSTRAINT `ActivityLog_fk2` FOREIGN KEY (`Response`) REFERENCES `MessageMaster`(`Message`);
 
 ALTER TABLE `ActivityLog` ADD CONSTRAINT `ActivityLog_fk3` FOREIGN KEY (`version`) REFERENCES `MessageMaster`(`version`);
+
+ALTER TABLE `MessageMaster` ADD CONSTRAINT `MessageMaster_fk0` FOREIGN KEY (`language`) REFERENCES `languageLookup`(`language`);
 
 ALTER TABLE `ThirdPartyAPISetupActivityLog` ADD CONSTRAINT `ThirdPartyAPISetupActivityLog_fk0` FOREIGN KEY (`serviceID`) REFERENCES `ThirdPartyAPISetup`(`u_ID`);
